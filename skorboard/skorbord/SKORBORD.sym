@@ -1,0 +1,132 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+004     @WRITE_PROGRAM_MEMORY8.P2
+008     PSP_DATA
+015-016 CCP_1
+015     CCP_1_LOW
+016     CCP_1_HIGH
+01B     CCP_2_LOW
+01B-01C CCP_2
+01C     CCP_2_HIGH
+020     lcdline
+021     skor1
+022     skor2
+023     s1
+024     d1
+025     sn
+026     kontrol
+027-028 toplam
+029-02A bitis
+02B     @TRIS_C
+02C     s_yaz.addres
+02C     tr_karekter.hafiza
+02C     cevir.veri
+02C     lcd_init.i
+02C     s_oku.addres
+02C     MAIN.@SCRATCH
+02D     cevir.sonuc
+02D     @PRINTF_U_63.P1
+02D     s_oku.data
+02D     s_yaz.data
+02D     tr_karekter.adres0
+02D     lcd_init.@SCRATCH
+02E.0   ext_eeprom_ready.ack
+02E     tr_karekter.adres1
+02E     @PRINTF_U_63.P1
+02E     @I2C_READ_1.P2
+02E     cevir.@SCRATCH
+02F     @DIV88.P1
+02F     @I2C_WRITE_1.P2
+02F     tr_karekter.adres2
+02F     @I2C_READ_1.@SCRATCH
+02F     cevir.@SCRATCH
+030     @DIV88.P1
+030     @MUL88.P2
+030     tr_karekter.adres3
+030     @I2C_READ_1.@SCRATCH
+031     @MUL88.P1
+031     tr_karekter.adres4
+031     @DIV88.@SCRATCH
+032     tr_karekter.adres5
+033     tr_karekter.adres6
+034     lcd_putc.c
+035     lcd_gotoxy.y
+035     @delay_ms1.P1
+036     lcd_gotoxy.x
+037     lcd_gotoxy.address
+038     lcd_send_byte.address
+039     lcd_send_byte.n
+03A     lcd_send_byte.@SCRATCH
+03B     lcd_send_nibble.nibble
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+07B     @SCRATCH
+09C.6   C1OUT
+09C.7   C2OUT
+10D-10E @WRITE_PROGRAM_MEMORY8.P1
+10D-10E @READ_PROGRAM_MEMORY8.P2
+
+008A  @delay_ms1
+0004  LCD_INIT_STRING
+009F  lcd_send_nibble
+00CF  lcd_send_byte
+00F4  lcd_init
+0127  lcd_gotoxy
+0142  @goto10090
+014A  lcd_putc
+031C  @I2C_READ_1
+0264  @I2C_WRITE_1
+0120  s_init
+0298  ext_eeprom_ready
+02C3  s_yaz
+02EE  s_oku
+0172  tr_karekter
+01AE  @goto10161
+01BA  tus
+0361  cevir
+023F  @MUL88
+0375  zaman
+01F5  @DIV88
+020A  @PRINTF_U_63
+03C5  MAIN
+000C  @const114
+0012  @const115
+001D  @const116
+0028  @const117
+0034  @const119
+003B  @const121
+0045  @const124
+0056  @const129
+006A  @const131
+007A  @const132
+03C5  @cinit
+
+Project Files:
+    SKORBORD.c
+    C:\Program Files\PICC\devices\16f877a.h
+    C:\Program Files\PICC\drivers\ekran.h
+    saat.h
+    lcd_karakter.h
+
+Units:
+    E:\skorbord\SKORBORD.c (main)
+
+Compiler Settings:
+    Processor:      PIC16F877A
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      0
+    Short,Int,Long: 1,8,16
+
+Output Files:
+    Errors:      E:\skorbord\SKORBORD.err
+    Ext Symbols: E:\skorbord\SKORBORD.esym
+    INHX8:       E:\skorbord\SKORBORD.hex
+    Symbols:     E:\skorbord\SKORBORD.sym
+    List:        E:\skorbord\SKORBORD.lst
+    Debug/COFF:  E:\skorbord\SKORBORD.cof
+    Project:     E:\skorbord\SKORBORD.PJT
+    Call Tree:   SKORBORD.tre
+    Statistics:  SKORBORD.sta

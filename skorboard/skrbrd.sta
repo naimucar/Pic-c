@@ -1,0 +1,62 @@
+
+ROM used: 811 (10%)
+          811 (10%) including unused fragments
+
+          2 Average locations per line
+          6 Average locations per statement
+
+RAM used: 11 (3%) at main() level
+          23 (6%) worst case
+
+Stack used: 5 worst case (out of 8 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   98    80  62  skrbrd.c
+  281     0   0  D:\Program Files\PICC\devices\16f877.h
+  118    49  38  ekran.h
+----- -----
+  497   129 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     21   3   1             @delay_ms1
+0      8   1   0             @const46
+0     48   6   1   326  2.8  lcd_send_nibble
+0     37   5   3   211  3.8  lcd_send_byte
+0     44   5   2   354  4.7  lcd_init
+0     27   3   3   321  5.5  lcd_gotoxy
+0      8   1   0             @goto10082
+0     40   5   1   308  5.0  lcd_putc
+0    345  43   4  2676  6.4  MAIN
+0     16   2   0             @const66
+0     20   2   0             @const67
+0     22   3   0             @const68
+0     22   3   0             @const70
+0     12   1   0             @const71
+0     15   2   0             @const72
+0     21   3   3             @DIV88
+0    101  12   6             @PRINTF_D_60
+
+Program metrics:
+    Functions               6
+    Statements              129
+    Comments                84
+    Volume (V)              5558
+    Difficilty (D)          27.5
+    Effort to implement (E) 152714
+    Time to implement (T)   2 hours, 21 minutes
+    Est Delivered Bugs (B)  1
+    Cyclomatic Complexity   18
+    Maintainability (MI)    62
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF   807  1237  
+00800-00FFF     0  2048  
+01000-017FF     0  2048  
+01800-01FFF     0  2048  
+
+
+

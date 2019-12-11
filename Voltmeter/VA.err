@@ -1,0 +1,5 @@
+>>> Warning 203 "VA.c" Line 25(1,1): Condition always TRUE
+>>> Warning 202 "VA.c" Line 7(16,17): Variable never used:   k
+>>> Warning 202 "VA.c" Line 9(36,37): Variable never used:   n
+      Memory usage:   ROM=39%      RAM=16% - 23%
+      0 Errors,  3 Warnings.

@@ -1,0 +1,99 @@
+CCS PCM C Compiler, Version 4.058, 58285               19-Haz-11 19:29
+
+               Filename: F:\okul\work\sarhoþ araba\robot.lst
+
+               ROM used: 58 words (1%)
+                         Largest free fragment is 2048
+               RAM used: 12 (3%) at main() level
+                         12 (3%) worst case
+               Stack:    0 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   004
+0003:  NOP
+.................... #include<16f877.h> 
+.................... //////// Standard Header file for the PIC16F877 device //////////////// 
+.................... #device PIC16F877 
+.................... #list 
+....................  
+.................... #define sag  pin_b0 
+.................... #define orta pin_b1 
+.................... #define sol  pin_b2 
+.................... #fuses nowdt,xt 
+.................... #use delay(clock=4000000) 
+....................  
+.................... int16 pwm1=0,pwm2=0; 
+*
+000D:  BCF    03.5
+000E:  CLRF   20
+000F:  CLRF   21
+0010:  CLRF   22
+0011:  CLRF   23
+.................... int8 x; 
+.................... void main() 
+.................... { 
+*
+0004:  CLRF   04
+0005:  BCF    03.7
+0006:  MOVLW  1F
+0007:  ANDWF  03,F
+0008:  BSF    03.5
+0009:  BSF    1F.0
+000A:  BSF    1F.1
+000B:  BSF    1F.2
+000C:  BCF    1F.3
+....................     output_low(pin_c2); 
+*
+0012:  MOVLW  FF
+0013:  MOVWF  25
+0014:  BCF    25.2
+0015:  MOVF   25,W
+0016:  BSF    03.5
+0017:  MOVWF  07
+0018:  BCF    03.5
+0019:  BCF    07.2
+....................     output_low(pin_c1); 
+001A:  BCF    25.1
+001B:  MOVF   25,W
+001C:  BSF    03.5
+001D:  MOVWF  07
+001E:  BCF    03.5
+001F:  BCF    07.1
+....................     setup_timer_2(T2_DIV_BY_4,249,1); 
+0020:  MOVLW  00
+0021:  MOVWF  78
+0022:  IORLW  05
+0023:  MOVWF  12
+0024:  MOVLW  F9
+0025:  BSF    03.5
+0026:  MOVWF  12
+....................     setup_ccp1(ccp_pwm); 
+0027:  BCF    03.5
+0028:  BCF    25.2
+0029:  MOVF   25,W
+002A:  BSF    03.5
+002B:  MOVWF  07
+002C:  BCF    03.5
+002D:  BCF    07.2
+002E:  MOVLW  0C
+002F:  MOVWF  17
+....................     setup_ccp2(ccp_pwm); 
+0030:  BCF    25.1
+0031:  MOVF   25,W
+0032:  BSF    03.5
+0033:  MOVWF  07
+0034:  BCF    03.5
+0035:  BCF    07.1
+0036:  MOVLW  0C
+0037:  MOVWF  1D
+....................     x = 0; 
+0038:  CLRF   24
+.................... } 
+....................  
+....................  
+0039:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F71   XT NOWDT PUT NOPROTECT BROWNOUT NOLVP NOCPD NOWRT NODEBUG

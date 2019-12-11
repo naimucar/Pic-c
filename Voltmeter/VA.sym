@@ -1,0 +1,158 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+004     @WRITE_PROGRAM_MEMORY8.P2
+008     PSP_DATA
+015     CCP_1_LOW
+015-016 CCP_1
+016     CCP_1_HIGH
+01B     CCP_2_LOW
+01B-01C CCP_2
+01C     CCP_2_HIGH
+020     lcdline
+021     k
+022     s
+023     x
+024     i
+025-026 bilgi_1
+027-028 bilgi_2
+029-02A bilgi
+02B-02C z
+02D-02E y
+02F-030 d
+031-034 V1
+035-038 V2
+039-03C VAK
+03D-040 A
+041-044 R
+045-048 h
+049-04C n
+04D-04E @ITOF.P1
+04D-050 @FLT.P2
+04D     lcd_init.i
+04D     MAIN.@SCRATCH
+04E     lcd_init.@SCRATCH
+04E     MAIN.@SCRATCH
+04F     MAIN.@SCRATCH
+050     MAIN.@SCRATCH
+051-054 @DIVFF.P1
+051-054 @SFTOI.P2
+051-054 @ADDFF.P3
+051-054 @FLT.P4
+051     MAIN.@SCRATCH
+052     MAIN.@SCRATCH
+053     MAIN.@SCRATCH
+054     MAIN.@SCRATCH
+055-058 @PRINTF_L32D_63FPFPF.P1
+055-058 @DIVFF.P2
+055-058 @ADDFF.P3
+055     @FLT.@SCRATCH
+056     @FLT.@SCRATCH
+059     @PRINTF_L32D_63FPFPF.P1
+059     @DIVFF.@SCRATCH
+059     @ADDFF.@SCRATCH
+05A     @PRINTF_L32D_63FPFPF.@SCRATCH
+05A     @DIVFF.@SCRATCH
+05A     @ADDFF.@SCRATCH
+05B     @PRINTF_L32D_63FPFPF.@SCRATCH
+05B     @DIVFF.@SCRATCH
+05B     @ADDFF.@SCRATCH
+05C     @PRINTF_L32D_63FPFPF.@SCRATCH
+05C     @DIVFF.@SCRATCH
+05C     @ADDFF.@SCRATCH
+05D     @PRINTF_L32D_63FPFPF.@SCRATCH
+05D     @DIVFF.@SCRATCH
+05D     @ADDFF.@SCRATCH
+05E     @PRINTF_L32D_63FPFPF.@SCRATCH
+05E     @DIVFF.@SCRATCH
+05E     @ADDFF.@SCRATCH
+05F     @PRINTF_L32D_63FPFPF.@SCRATCH
+05F     @ADDFF.@SCRATCH
+060     @PRINTF_L32D_63FPFPF.@SCRATCH
+060     @ADDFF.@SCRATCH
+061     @PRINTF_L32D_63FPFPF.@SCRATCH
+062-065 @DIV3232.P1
+062     lcd_putc.c
+062-065 @FTOSD.P1
+062-065 @MULFF.P2
+063     @delay_ms1.P1
+063     lcd_gotoxy.y
+064     lcd_gotoxy.x
+065     lcd_gotoxy.address
+066     lcd_send_byte.address
+066-069 @MULFF.P1
+066-069 @DIV3232.P2
+066     @FTOSD.@SCRATCH
+067     lcd_send_byte.n
+068     lcd_send_byte.@SCRATCH
+069     lcd_send_nibble.nibble
+06A     @MULFF.@SCRATCH
+06A     @DIV3232.@SCRATCH
+06B     @MULFF.@SCRATCH
+06B     @DIV3232.@SCRATCH
+06C     @MULFF.@SCRATCH
+06C     @DIV3232.@SCRATCH
+06D     @MULFF.@SCRATCH
+06D     @DIV3232.@SCRATCH
+06E     @MULFF.@SCRATCH
+06E     @DIV3232.@SCRATCH
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+07B     @SCRATCH
+09C.6   C1OUT
+09C.7   C2OUT
+10D-10E @WRITE_PROGRAM_MEMORY8.P1
+10D-10E @READ_PROGRAM_MEMORY8.P2
+
+0045  @delay_ms1
+0004  LCD_INIT_STRING
+005A  lcd_send_nibble
+008A  lcd_send_byte
+00AF  lcd_init
+00DB  lcd_gotoxy
+00F6  @goto10094
+00FE  lcd_putc
+0800  MAIN
+000C  @const84
+0126  @ITOF
+0143  @MULFF
+0221  @FTOSD
+01B8  @DIV3232
+01FA  @PRINTF_L32D_63FPFPF
+02E1  @FLT
+0320  @DIVFF
+03EA  @SFTOI
+0012  @const109
+001D  @const110
+0031  @const115
+0409  @ADDFF
+0800  @cinit
+085D  basla
+0D3C  f
+
+Project Files:
+    VA.c
+    D:\Program Files\PICC\devices\16f877a.h
+    ekran.h
+
+Units:
+    C:\work\VA\VA.c (main)
+
+Compiler Settings:
+    Processor:      PIC16F877A
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      0
+    Short,Int,Long: 1,8,16
+
+Output Files:
+    Errors:      C:\work\VA\VA.err
+    Ext Symbols: C:\work\VA\VA.esym
+    INHX8:       C:\work\VA\VA.hex
+    Symbols:     C:\work\VA\VA.sym
+    List:        C:\work\VA\VA.lst
+    Debug/COFF:  C:\work\VA\VA.cof
+    Project:     C:\work\VA\VA.PJT
+    Call Tree:   VA.tre
+    Statistics:  VA.sta

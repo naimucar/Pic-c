@@ -1,0 +1,25 @@
+ÀÄ7seg
+   ÀÄMAIN  0/41  Ram=2
+      ÃÄ??0??
+      ÃÄekran  0/50  Ram=4
+      ³  ÃÄ@DIV88  0/21  Ram=3
+      ³  ÃÄ@DIV88  0/21  Ram=3
+      ³  ÃÄdigit_goster  0/78  Ram=2
+      ³  ³  ÃÄ@const43  0/14  Ram=0
+      ³  ³  ÃÄ@const43  0/14  Ram=0
+      ³  ³  ÃÄ@const43  0/14  Ram=0
+      ³  ³  ÃÄ@const43  0/14  Ram=0
+      ³  ³  ÃÄ@const43  0/14  Ram=0
+      ³  ³  ÃÄ@const43  0/14  Ram=0
+      ³  ³  ÀÄ@const43  0/14  Ram=0
+      ³  ÃÄ@delay_ms1  0/21  Ram=1
+      ³  ÃÄdigit_goster  0/78  Ram=2
+      ³  ³  ÃÄ@const43  0/14  Ram=0
+      ³  ³  ÃÄ@const43  0/14  Ram=0
+      ³  ³  ÃÄ@const43  0/14  Ram=0
+      ³  ³  ÃÄ@const43  0/14  Ram=0
+      ³  ³  ÃÄ@const43  0/14  Ram=0
+      ³  ³  ÃÄ@const43  0/14  Ram=0
+      ³  ³  ÀÄ@const43  0/14  Ram=0
+      ³  ÀÄ@delay_ms1  0/21  Ram=1
+      ÀÄ@delay_ms1  0/21  Ram=1

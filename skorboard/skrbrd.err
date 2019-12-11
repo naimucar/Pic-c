@@ -1,0 +1,5 @@
+>>> Warning 203 "skrbrd.c" Line 21(1,1): Condition always TRUE
+>>> Warning 201 "skrbrd.c" Line 66(1,1): Assignment inside relational expression
+>>> Warning 201 "skrbrd.c" Line 88(1,1): Assignment inside relational expression
+      Memory usage:   ROM=10%      RAM=3% - 6%
+      0 Errors,  3 Warnings.

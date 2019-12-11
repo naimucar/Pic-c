@@ -1,0 +1,4 @@
+>>> Warning 202 "robot.c" Line 8(7,11): Variable never used:   pwm1
+>>> Warning 202 "robot.c" Line 8(14,18): Variable never used:   pwm2
+      Memory usage:   ROM=1%      RAM=3% - 3%
+      0 Errors,  2 Warnings.

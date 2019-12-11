@@ -1,0 +1,299 @@
+CCS PCM C Compiler, Version 4.038, 62930               30-Nis-08 00:31
+
+               Filename: E:\trafik\7seg.lst
+
+               ROM used: 229 words (11%)
+                         Largest free fragment is 1819
+               RAM used: 8 (4%) at main() level
+                         14 (6%) worst case
+               Stack:    3 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   0BC
+0003:  NOP
+.................... #include<16f628.h>  
+.................... //////// Standard Header file for the PIC16F628 device //////////////// 
+.................... #device PIC16F628 
+.................... #list 
+....................  
+.................... #fuses nowdt,intrc_io,nomclr 
+.................... #use delay(clock=4000000) 
+*
+0075:  MOVLW  26
+0076:  MOVWF  04
+0077:  BCF    03.7
+0078:  MOVF   00,W
+0079:  BTFSC  03.2
+007A:  GOTO   089
+007B:  MOVLW  01
+007C:  MOVWF  78
+007D:  CLRF   77
+007E:  DECFSZ 77,F
+007F:  GOTO   07E
+0080:  DECFSZ 78,F
+0081:  GOTO   07D
+0082:  MOVLW  4A
+0083:  MOVWF  77
+0084:  DECFSZ 77,F
+0085:  GOTO   084
+0086:  GOTO   087
+0087:  DECFSZ 00,F
+0088:  GOTO   07B
+0089:  RETLW  00
+....................        
+....................  
+.................... #define pin_a  pin_b1 
+.................... #define pin_b  pin_b6      
+.................... #define pin_c  pin_b4 
+.................... #define pin_d  pin_b5                
+.................... #define pin_e  pin_b2 
+.................... #define pin_f  pin_b0                                             
+.................... #define pin_g  pin_b7                    
+.................... #define ct1    pin_a2               
+.................... #define ct2    pin_a3 
+....................  
+.................... unsigned int8 const tablo[10]=  // 7 segment ekranda karakterleri 
+.................... {63 , // 0 karakteri            // göstermek için gerekli tablo                                 
+....................  6  , // 1 karakteri                                              
+....................  91 , // 2 karakteri 
+....................  79 , // 3 karakteri 
+....................  102, // 4 karakteri 
+....................  109, // 5 karakteri 
+....................  125, // 6 karakteri 
+....................  7  , // 7 karakteri                                             
+....................  127, // 8 karakteri 
+....................  111, // 9 karakteri 
+.................... };   
+....................                            
+....................  
+.................... void digit_goster(unsigned int8 veri)  // tek digit göstermek için gerekli program                               
+.................... { 
+....................                                                                                    
+....................    output_bit(pin_a,tablo[veri]&1);    // a segmenti bilgisi                                    
+*
+0027:  MOVF   26,W
+0028:  CALL   004
+0029:  ANDLW  01
+002A:  BTFSS  03.2
+002B:  GOTO   02E
+002C:  BCF    06.1
+002D:  GOTO   02F
+002E:  BSF    06.1
+002F:  BSF    03.5
+0030:  BCF    06.1
+....................    output_bit(pin_b,tablo[veri]&2);    // b segmenti bilgisi 
+0031:  BCF    03.5
+0032:  MOVF   26,W
+0033:  CALL   004
+0034:  ANDLW  02
+0035:  BTFSS  03.2
+0036:  GOTO   039
+0037:  BCF    06.6
+0038:  GOTO   03A
+0039:  BSF    06.6
+003A:  BSF    03.5
+003B:  BCF    06.6
+....................    output_bit(pin_c,tablo[veri]&4);    // c segmenti bilgisi     
+003C:  BCF    03.5
+003D:  MOVF   26,W
+003E:  CALL   004
+003F:  ANDLW  04
+0040:  BTFSS  03.2
+0041:  GOTO   044
+0042:  BCF    06.4
+0043:  GOTO   045
+0044:  BSF    06.4
+0045:  BSF    03.5
+0046:  BCF    06.4
+....................    output_bit(pin_d,tablo[veri]&8);    // d segmenti bilgisi                   
+0047:  BCF    03.5
+0048:  MOVF   26,W
+0049:  CALL   004
+004A:  ANDLW  08
+004B:  BTFSS  03.2
+004C:  GOTO   04F
+004D:  BCF    06.5
+004E:  GOTO   050
+004F:  BSF    06.5
+0050:  BSF    03.5
+0051:  BCF    06.5
+....................    output_bit(pin_e,tablo[veri]&16);   // e segmenti bilgisi                     
+0052:  BCF    03.5
+0053:  MOVF   26,W
+0054:  CALL   004
+0055:  ANDLW  10
+0056:  BTFSS  03.2
+0057:  GOTO   05A
+0058:  BCF    06.2
+0059:  GOTO   05B
+005A:  BSF    06.2
+005B:  BSF    03.5
+005C:  BCF    06.2
+....................    output_bit(pin_f,tablo[veri]&32);   // f segmenti bilgisi                     
+005D:  BCF    03.5
+005E:  MOVF   26,W
+005F:  CALL   004
+0060:  ANDLW  20
+0061:  BTFSS  03.2
+0062:  GOTO   065
+0063:  BCF    06.0
+0064:  GOTO   066
+0065:  BSF    06.0
+0066:  BSF    03.5
+0067:  BCF    06.0
+....................    output_bit(pin_g,tablo[veri]&64);   // g segmenti bilgisi                     
+0068:  BCF    03.5
+0069:  MOVF   26,W
+006A:  CALL   004
+006B:  ANDLW  40
+006C:  BTFSS  03.2
+006D:  GOTO   070
+006E:  BCF    06.7
+006F:  GOTO   071
+0070:  BSF    06.7
+0071:  BSF    03.5
+0072:  BCF    06.7
+.................... }    
+0073:  BCF    03.5
+0074:  RETLW  00
+....................  
+.................... void ekran(unsigned int8 sayi) 
+.................... { 
+.................... unsigned int8 digit0,digit1,i; 
+....................                      
+....................  digit0 = sayi % 10;                  // sayýnýn 0. digitini ayýkla   
+*
+008A:  MOVF   22,W
+008B:  MOVWF  26
+008C:  MOVLW  0A
+008D:  MOVWF  27
+008E:  CALL   012
+008F:  MOVF   77,W
+0090:  MOVWF  23
+....................  digit1 = sayi / 10;                  // sayýnýn 1. digitini ayýkla                             
+0091:  MOVF   22,W
+0092:  MOVWF  26
+0093:  MOVLW  0A
+0094:  MOVWF  27
+0095:  CALL   012
+0096:  MOVF   78,W
+0097:  MOVWF  24
+....................   
+....................  for(i=0;i<50;++i)                    // sayýyý ekranda 50 defa göster     
+0098:  CLRF   25
+0099:  MOVF   25,W
+009A:  SUBLW  31
+009B:  BTFSS  03.0
+009C:  GOTO   0BB
+....................  {                                                                 
+....................    
+....................   output_low(ct1);                    // 0. digitin ortak katodunu sýfýra çek                                
+009D:  BSF    03.5
+009E:  BCF    05.2
+009F:  BCF    03.5
+00A0:  BCF    05.2
+....................   digit_goster(digit0);               // sayýyý ekrana yolla                                       
+00A1:  MOVF   23,W
+00A2:  MOVWF  26
+00A3:  CALL   027
+....................   delay_ms(5);                        // sayýnýn görünmesi için 5 ms bekle                      
+00A4:  MOVLW  05
+00A5:  MOVWF  26
+00A6:  CALL   075
+....................   output_high(ct1);                   // ortak katodu diðer digit bilgisini de göstermemesi için +5 volta(I)'e çek                                    
+00A7:  BSF    03.5
+00A8:  BCF    05.2
+00A9:  BCF    03.5
+00AA:  BSF    05.2
+....................                                        
+....................   output_low(ct2); 
+00AB:  BSF    03.5
+00AC:  BCF    05.3
+00AD:  BCF    03.5
+00AE:  BCF    05.3
+....................   digit_goster(digit1); 
+00AF:  MOVF   24,W
+00B0:  MOVWF  26
+00B1:  CALL   027
+....................   delay_ms(5); 
+00B2:  MOVLW  05
+00B3:  MOVWF  26
+00B4:  CALL   075
+....................   output_high(ct2);        
+00B5:  BSF    03.5
+00B6:  BCF    05.3
+00B7:  BCF    03.5
+00B8:  BSF    05.3
+....................  }           
+00B9:  INCF   25,F
+00BA:  GOTO   099
+.................... }     
+00BB:  GOTO   0CC (RETURN)
+....................  
+.................... void main() 
+.................... {                                                                     
+00BC:  CLRF   04
+00BD:  BCF    03.7
+00BE:  MOVLW  1F
+00BF:  ANDWF  03,F
+00C0:  MOVLW  07
+00C1:  MOVWF  1F
+.................... unsigned int8 f; 
+.................... while(true) 
+.................... { 
+.................... while(!input(pin_a1)); 
+00C2:  BSF    03.5
+00C3:  BSF    05.1
+00C4:  BCF    03.5
+00C5:  BTFSS  05.1
+00C6:  GOTO   0C2
+.................... f = 20; 
+00C7:  MOVLW  14
+00C8:  MOVWF  21
+.................... do 
+.................... { 
+.................... ekran(f); 
+00C9:  MOVF   21,W
+00CA:  MOVWF  22
+00CB:  GOTO   08A
+.................... }while(f-- != 0); 
+00CC:  MOVF   21,W
+00CD:  DECF   21,F
+00CE:  XORLW  00
+00CF:  BTFSS  03.2
+00D0:  GOTO   0C9
+.................... output_high(ct1); 
+00D1:  BSF    03.5
+00D2:  BCF    05.2
+00D3:  BCF    03.5
+00D4:  BSF    05.2
+.................... output_high(ct2); 
+00D5:  BSF    03.5
+00D6:  BCF    05.3
+00D7:  BCF    03.5
+00D8:  BSF    05.3
+.................... output_high(pin_a0); 
+00D9:  BSF    03.5
+00DA:  BCF    05.0
+00DB:  BCF    03.5
+00DC:  BSF    05.0
+.................... delay_ms(20); 
+00DD:  MOVLW  14
+00DE:  MOVWF  26
+00DF:  CALL   075
+.................... output_float(pin_a0); 
+00E0:  BSF    03.5
+00E1:  BSF    05.0
+.................... output_float(pin_a1); 
+00E2:  BSF    05.1
+....................  
+.................... }      
+00E3:  GOTO   0C3
+....................  
+.................... }                         
+00E4:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F50   NOWDT PUT NOPROTECT BROWNOUT NOMCLR NOLVP INTRC_IO NOCPD

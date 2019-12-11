@@ -1,0 +1,88 @@
+#include<16f877a.h>   
+#DEViCE ADC=8               // mikrodenetleyici dosyasýný yükle               
+#fuses xt,nowdt,noprotect                       // sigortalarý ayarla
+#use delay(clock=4000000)              // 4 Mhz kristal için gecikmeleri ayarla
+#include<ekran.h>                       // lcd yi portb ye baðlamak için gerekli dosyalarý yükle
+#define calis output_high(pin_d0);     // calýþma anýnda yanacak led tanýmlandý
+#define dur   output_low(pin_d0);      // ledi geri söndürmek için gerekli tanýmlama
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////                          
+////////////  ana program baþlangýcý //////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// program timer2 sayacýnýn  T0CKI  ucundan gelen darbeleri  saymasý esasý ile çalýþýr     /////              
+// devir sayýsý deiþkeni ve timer0 yani ayný adrese tanýmlý olan sayac deðiþkeni sýfýrlanýr   /////
+// program 100 milisaniye aralýklarla 1 saniye bekletilir. bu esnada TMR0 gelen palsleri      /////
+// saymaya devam eder. toplam 1 saniye sonunda tmr0 (sayac) ýn deðeri diskte 16 delik olduðu  /////
+// ve ayar yani option registerinin tmr0 için deðeri 1/16 ya ayarlandýðu için elde edilen     /////
+// deðer tam olarak bir saniyedeki devir sayýsýný verir. bu sonuç 60 ile çarpýlarak bir       /////
+// dakikadaki deðer elde edilmiþ olunur. devrenin ikinci bir görevi de motorun hýz kontro-    /////
+// lünün yapýlmasýdýr. Bu iþlem için timer2 ve ccp registerleri ilgili ccs c komutlarý ile    /////
+// kurulur. deðiþim analog kanaldan gelen bilgi ile olacaðý için analog dijital dönüþtürücü   /////
+// için gerekli ayarlar yapýlýr. RA0 kanalý ilgili hýz kontrol potunun ayar ucuna baðlanýr.   /////
+// ilgili komutlar ile analog bilgi alýnarak bir deðiþkene ve ardýndan pwm darbe geniþliðine  /////
+// atanýr. bu sayede motorun hýz kontrolüde yapýlmýþ olunur.  her satýr için gerekli açýklama /////
+// aþaðýda yapýlmýþtýr                                                                        /////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+                                             
+void main()                                     
+{                                  
+                                                                                                                                 
+unsigned int16 devir,sayac;                                                                                                    
+unsigned int8 i,PVM;
+
+setup_timer_1(T1_external|T1_div_by_1);   
+setup_timer_2( T2_DIV_BY_1,249,1 );       
+setup_ccp1(ccp_pwm); 
+setup_adc_ports( RA0_ANALOG );      
+setup_adc(ADC_CLOCK_INTERNAL);     
+set_adc_channel(0);                
+delay_ms(20);                    
+
+ana_p:
+set_pwm1_duty(0);         
+dur;                               
+lcd_init();                        
+delay_ms(50); 
+lcd_gotoxy(1,2);                            
+printf(lcd_putc,"\fSTARTA BAS" ) ; 
+ 
+ do
+   {
+    if(input(pin_d2)==0) break;      
+   delay_ms(50);                   
+   }
+   while(1);      
+ 
+lcd_putc("\fMOTOR CALISIYOR");                  
+calis; 
+lcd_putc("\f");                         
+for(;;)        
+{           
+pvm=read_adc(); 
+lcd_gotoxy(1,1);                          
+printf(lcd_putc,"MOTOR CALISIYOR");               
+DELAY_MS(30);
+set_pwm1_duty(pvm); 
+devir=0;                            
+set_timer1(0);                            
+//////////////////////////////////////////////////////////////////////////////////////
+// bu kýsým 100 ms aralýklarla durdurma butonuna basýlýp basýlmadýðýný kontrol eder //
+// bu arada  timer0 gelen palsleri sayar                                            //
+//////////////////////////////////////////////////////////////////////////////////////
+   for(i=0;i<10;i++)
+   {                                                   
+   delay_ms(50);
+      if(input(pin_d3)==0) {goto ana_p;}  // durdurma butonuna basýldý ise ana_p ye git
+   }
+/////////////////////////////////////////////////////////////////////////////////////
+sayac=get_timer1(); 
+devir=sayac;                             // devir sayacýna sayýlan deðeri ata
+devir=devir*7;                         
+lcd_gotoxy(2,1);                          // lcd yi temizle imleci ilk sütüna çek
+printf(lcd_putc,"devir=%lud/d",devir);
+} 
+ }  
+ 
+                                                      

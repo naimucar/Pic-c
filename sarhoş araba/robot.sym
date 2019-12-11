@@ -1,0 +1,54 @@
+004     @WRITE_PROGRAM_MEMORY8.P1
+004-005 @READ_PROGRAM_MEMORY8.P2
+008     PSP_DATA
+015     CCP_1_LOW
+015-016 CCP_1
+016     CCP_1_HIGH
+01B     CCP_2_LOW
+01B-01C CCP_2
+01C     CCP_2_HIGH
+020-021 pwm1
+022-023 pwm2
+024     x
+025     @TRIS_C
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+07B     @SCRATCH
+10D-10E @READ_PROGRAM_MEMORY8.P1
+10D-10E @WRITE_PROGRAM_MEMORY8.P2
+
+ROM Allocation:
+0004  main
+0004  @cinit
+
+Project Directory:
+    F:\okul\work\sarhoþ araba\
+
+Project Files:
+    robot.c
+    C:\Program Files\PICC\devices\16f877.h
+
+Units:
+    F:\okul\work\sarhoþ araba\robot.c (main)
+
+Compiler Settings:
+    Processor:      PIC16F877
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      robot.err
+    Ext Symbols: robot.esym
+    INHX8:       robot.hex
+    Symbols:     robot.sym
+    List:        robot.lst
+    Debug/COFF:  robot.cof
+    Project:     robot.PJT
+    Call Tree:   robot.tre
+    Statistics:  robot.sta
